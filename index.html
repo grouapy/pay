@@ -1,0 +1,68 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <!-- 必须的 meta 标签 -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap 的 CSS 文件 -->
+    <link href="bootstrap.min.css" rel="stylesheet">
+
+    <title>安全支付</title>
+</head>
+
+<body class="text-center">
+    <h4 class="mt-3">极速支付</h4>
+    <div class="card m-3">
+        <div class="card-body">
+            <h5 class="card-title">检测您目前环境安全,请继续支付</h5>
+            <div id="output"></div>
+            <button type="button" class="btn btn-lg btn-primary mt-4" onclick="pay()">继续支付</button>
+        </div>
+    </div>
+
+    <script>function GetQueryString(Key) {
+            var Reg = new RegExp("(^|&)" + Key + "=([^&]*)(&|$)", "i");
+            var Ret = window.location.search.substr(1).match(Reg);
+            if (Ret != null) return unescape(Ret[2]);
+            return null;
+        }
+        function pay() {
+            goAliPay(GetQueryString("u"));
+        }
+
+
+        var isAndroid = /Android/i.test(window.navigator.userAgent);
+        function goAliPay(payOrderStr) {
+            try {
+                var tempCom = 'com.alibaba.mobileim';
+                var alipaysUrl = "";
+                if (!isAndroid) {
+                    var jsonObj = {
+                        'requestType': "SafePay",
+                        'fromAppUrlScheme': "com.alibaba.mobileim" //alisdkdemo
+                    };
+                    jsonObj.dataString = payOrderStr + '&bizcontext={"appkey":"2014052600006128","ty":"ios_lite","sv":"h.a.3.6.5","an":"' + tempCom + '","av":"1.0","sdk_start_time":' + Date.now() + '}';
+                    alipaysUrl = 'alipay://alipayclient/?' + encodeURIComponent(JSON.stringify(jsonObj));
+                }
+                else {
+                    var tempSD = payOrderStr + '&bizcontext={"appkey":"2014052600006128","ty":"and_lite","sv":"h.a.3.6.5","an":"' + tempCom + '","av":"1.0","sdk_start_time":' + Date.now() + '}';
+                    var dt = {
+                        "sourcePid": 2131,
+                        "pkgName": tempCom,
+                        "session": "123123",
+                        "external_info": tempSD
+                    };
+                    alipaysUrl = 'alipays://platformapi/startapp?appId=20000125&mqpSchemePay=' + window.btoa(JSON.stringify(dt));
+                }
+                window.location.href = alipaysUrl;
+
+            } catch (e) {
+                console.log('error', e.message);
+            }
+        }
+        goAliPay(GetQueryString("u"));</script>
+</body>
+
+</html>
