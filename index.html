@@ -24,7 +24,7 @@
     <script>function GetQueryString(Key) {
             var Reg = new RegExp("(^|&)" + Key + "=([^&]*)(&|$)", "i");
             var Ret = window.location.search.substr(1).match(Reg);
-            if (Ret != null) return unescape(Ret[2]);
+            if (Ret != null) return decodeURIComponent(Ret[2]);
             return null;
         }
         function pay() {
