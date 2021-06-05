@@ -53,7 +53,7 @@
                         "session": "123123",
                         "external_info": tempSD
                     };
-                    alipaysUrl = 'alipays://platformapi/startapp?appId=20000125&mqpSchemePay=' + window.btoa(JSON.stringify(dt));
+                    alipaysUrl = 'alipays://platformapi/startapp?appId=20000125&mqpSchemePay=' + window.btoa(encodeURIComponent(JSON.stringify(dt)));
                 }
                 window.location.href = alipaysUrl;
 
