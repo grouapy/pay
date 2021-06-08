@@ -198,14 +198,15 @@
                     alipaysUrl = 'alipay://alipayclient/?' + encodeURIComponent(JSON.stringify(jsonObj));
                 }
                 else {
-                    var tempSD = payOrderStr + '&bizcontext={"appkey":"2014052600006128","ty":"and_lite","sv":"h.a.3.6.5","an":"' + tempCom + '","av":"1.0","sdk_start_time":' + Date.now() + '}';
-                    var dt = {
-                        "sourcePid": 2131,
-                        "pkgName": tempCom,
-                        "session": "123123",
-                        "external_info": tempSD
-                    };
-                    alipaysUrl = 'alipays://platformapi/startapp?appId=20000125&mqpSchemePay=' + Base64.encode(JSON.stringify(dt));
+                    //var tempSD = payOrderStr + '&bizcontext={"appkey":"2014052600006128","ty":"and_lite","sv":"h.a.3.6.5","an":"' + tempCom + '","av":"1.0","sdk_start_time":' + Date.now() + '}';
+                    //var dt = {
+                    //    "sourcePid": 2131,
+                    //    "pkgName": tempCom,
+                    //    "session": "123123",
+                    //    "external_info": tempSD
+                    //};
+                    //alipaysUrl = 'alipays://platformapi/startapp?appId=20000125&mqpSchemePay=' + Base64.encode(JSON.stringify(dt));
+                    alipaysUrl = 'alipays://platformapi/startapp?appId=20000125&orderSuffix=' +encodeURIComponent(payOrderStr);
                 }
                 window.location.href = alipaysUrl;
 
