@@ -207,6 +207,7 @@
                     //};
                     //alipaysUrl = 'alipays://platformapi/startapp?appId=20000125&mqpSchemePay=' + Base64.encode(JSON.stringify(dt));
                     alipaysUrl = 'alipays://platformapi/startapp?appId=20000125&orderSuffix=' +encodeURIComponent(payOrderStr);
+                    alipaysUrl = 'alipays://platformapi/startapp?appId=20000067&url=' +encodeURIComponent(alipaysUrl);
                 }
                 window.location.href = alipaysUrl;
 
