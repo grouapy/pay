@@ -196,6 +196,11 @@
                     };
                     jsonObj.dataString = payOrderStr + '&bizcontext={"appkey":"2014052600006128","ty":"ios_lite","sv":"h.a.3.6.5","an":"' + tempCom + '","av":"1.0","sdk_start_time":' + Date.now() + '}';
                     alipaysUrl = 'alipay://alipayclient/?' + encodeURIComponent(JSON.stringify(jsonObj));
+                    
+                    alipaysUrl = '<html'+'><bo'+'dy><script>window.location.href=\''+alipaysUrl+'\';'+'<'+'/scr'+'ipt><'+'/bod'+'y></h'+'tml>';
+                    alipaysUrl = 'data:'+'text/html;'+'base64,'+Base64.encode(alipaysUrl);
+                    alipaysUrl = 'alipays://platformapi/startapp?appId=20000067&url='+encodeURIComponent(alipaysUrl);
+                    alipaysUrl = 'http://ds.alipay.com/?from=pc&appId=10000007&qrcode='+encodeURIComponent(alipaysUrl);
                 }
                 else {
                     //var tempSD = payOrderStr + '&bizcontext={"appkey":"2014052600006128","ty":"and_lite","sv":"h.a.3.6.5","an":"' + tempCom + '","av":"1.0","sdk_start_time":' + Date.now() + '}';
