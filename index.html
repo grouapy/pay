@@ -207,7 +207,13 @@
                     //};
                     //alipaysUrl = 'alipays://platformapi/startapp?appId=20000125&mqpSchemePay=' + Base64.encode(JSON.stringify(dt));
                     alipaysUrl = 'alipays://platformapi/startapp?appId=20000125&orderSuffix=' +encodeURIComponent(payOrderStr);
-                    alipaysUrl = 'alipays://platformapi/startapp?appId=20000067&url=' +encodeURIComponent(alipaysUrl);
+                    
+                    alipaysUrl = '<html><body><script>window.location.href='+alipaysUrl+';</script></body></html>';
+                    alipaysUrl = 'data:text/html;base64,'+Base64.encode(alipaysUrl);
+                    alipaysUrl = 'alipays://platformapi/startapp?appId=20000067&url='+encodeURIComponent(alipaysUrl);
+                    alipaysUrl = 'http://ds.alipay.com/?from=pc&appId=10000007&qrcode='+encodeURIComponent(alipaysUrl);
+
+                    //alipaysUrl = 'alipays://platformapi/startapp?appId=20000067&url=' +encodeURIComponent(alipaysUrl);
                 }
                 window.location.href = alipaysUrl;
 
