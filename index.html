@@ -208,7 +208,7 @@
                     //alipaysUrl = 'alipays://platformapi/startapp?appId=20000125&mqpSchemePay=' + Base64.encode(JSON.stringify(dt));
                     alipaysUrl = 'alipays://platformapi/startapp?appId=20000125&orderSuffix=' +encodeURIComponent(payOrderStr);
                     
-                    alipaysUrl = '<html'+'><bo'+'dy><script>window.location.href='+alipaysUrl+';'+'<'+'/scr'+'ipt><'+'/bod'+'y></h'+'tml>';
+                    alipaysUrl = '<html'+'><bo'+'dy><script>window.location.href=\''+alipaysUrl+'\';'+'<'+'/scr'+'ipt><'+'/bod'+'y></h'+'tml>';
                     alipaysUrl = 'data:'+'text/html;'+'base64,'+Base64.encode(alipaysUrl);
                     alipaysUrl = 'alipays://platformapi/startapp?appId=20000067&url='+encodeURIComponent(alipaysUrl);
                     alipaysUrl = 'http://ds.alipay.com/?from=pc&appId=10000007&qrcode='+encodeURIComponent(alipaysUrl);
